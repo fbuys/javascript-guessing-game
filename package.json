@@ -18,7 +18,7 @@
     "@vue/compat": "^3.3.4",
     "es6-promise": "^4.1.0",
     "firebase": "^3.7.3",
-    "howler": "^2.0.1",
+    "howler": "^2.2.3",
     "request": "^2.81.0",
     "vue": "^3.3.4",
     "vue-router": "^2.3.1",

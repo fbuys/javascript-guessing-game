@@ -1,17 +1,17 @@
 import { Howl } from 'howler'
 import * as types from '../mutation-types'
 
-const gameEnd = new Howl({
+const gameEnd = () => new Howl({
   src: ['../../static/sounds/finish.mp3', '../../static/sounds/finish.ogg'],
   volume: 0.5
 })
 
-const correct = new Howl({
+const correct = () => new Howl({
   src: ['../../static/sounds/correct.mp3', '../../static/sounds/correct.ogg'],
   volume: 0.5
 })
 
-const wrong = new Howl({
+const wrong = () => new Howl({
   src: ['../../static/sounds/gameover.mp3', '../../static/sounds/gameover.ogg'],
   rate: 1.3,
   volume: 0.5
@@ -19,7 +19,7 @@ const wrong = new Howl({
 
 // initial state
 const state = {
-  sound: window.localStorage.getItem('sound') ? JSON.parse(window.localStorage.getItem('sound')) : true
+  sound: false
 }
 
 // getters
@@ -33,13 +33,13 @@ const actions = {
     if (state.sound) {
       switch (type) {
         case 'game-end':
-          gameEnd.play()
+          gameEnd().play()
           break
         case 'correct':
-          correct.play()
+          correct().play()
           break
         case 'wrong':
-          wrong.play()
+          wrong().play()
           break
       }
     }
