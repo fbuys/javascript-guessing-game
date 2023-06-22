@@ -2,7 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import 'es6-promise/auto' // Polyfill ie11
 
-import Vue from 'vue'
+import Vue, { createApp } from 'vue'
 import VueRouter from 'vue-router'
 import { sync } from 'vuex-router-sync'
 
@@ -37,11 +37,10 @@ const router = new VueRouter({
 
 sync(store, router)
 
-/* eslint-disable no-new */
-new Vue({
-  router,
-  store
-}).$mount('#app')
+const app = createApp(App)
+app.use(store)
+app.use(router)
+app.mount('#app')
 
 // hide loading
 document.querySelector('.loading-container').style.display = 'none'
