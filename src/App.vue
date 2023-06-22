@@ -3,8 +3,11 @@
     <progress-bar></progress-bar>
     <sound-toggle></sound-toggle>
     <login-view v-on:log-in="logIn" v-on:log-out="logOut"></login-view>
-    <router-view v-on:save-score="saveScore"></router-view>
-    <credits class="credits" v-if="routePath === '/'"></credits>
+    <Game />
+    <!-- <router-view /> -->
+    <!-- <router-view v-on:save-score="saveScore"></router-view> -->
+    <!-- <router-view></router-view> -->
+    <credits class="credits" v-if="$route === '/'"></credits>
   </div>
 </template>
 
@@ -17,6 +20,7 @@ import ProgressBar from './components/ProgressBar'
 import Credits from './components/Credits'
 import SoundToggle from './components/SoundToggle'
 import LoginView from './components/LoginView'
+import Game from './components/Game'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyDzKhNG-bafYPDTbAFFGqSscGJ7a-rdB9M',
@@ -31,12 +35,13 @@ export default {
     ProgressBar,
     Credits,
     SoundToggle,
-    LoginView
+    LoginView,
+    Game
   },
   created: function () {
     this.firebase()
 
-    if (this.routePath === '/ranking') {
+    if (this.$route === '/ranking') {
       this.getHighScores()
     }
   },
@@ -47,17 +52,20 @@ export default {
       'startTime',
       'endTime',
       'user',
-      'routePath',
+      // 'routePath',
       'highScores'
     ])
   },
-  watch: {
-    routePath: function (path) {
-      if (path === '/ranking' && this.highScores.length === 0) {
-        this.getHighScores()
-      }
-    }
-  },
+  // watch: {
+  //   routePath: {
+  //     handler: function (path) {
+  //       if (path === '/ranking' && this.highScores.length === 0) {
+  //         this.getHighScores()
+  //       }
+  //     },
+  //     deep: true
+  //   }
+  // },
   methods: {
     ...mapActions([
       'setUser',

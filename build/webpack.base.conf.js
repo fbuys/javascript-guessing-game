@@ -24,7 +24,7 @@ module.exports = {
   resolve: {
     extensions: [".js", ".vue", ".json"],
     alias: {
-      vue: "@vue/compat",
+      'vue$': 'vue/dist/vue.esm-bundler.js',
       "@": resolve("src"),
     },
   },
@@ -64,6 +64,11 @@ module.exports = {
           limit: 10000,
           name: utils.assetsPath("fonts/[name].[hash:7].[ext]"),
         },
+      },
+      {
+        test: /\.mjs$/,
+        include: /node_modules/,
+        type: "javascript/auto"
       },
     ],
   },

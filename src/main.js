@@ -2,9 +2,9 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import 'es6-promise/auto' // Polyfill ie11
 
-import Vue, { createApp } from 'vue'
-import VueRouter from 'vue-router'
-import { sync } from 'vuex-router-sync'
+import { createApp } from 'vue'
+import * as VueRouter from 'vue-router'
+// import { sync } from 'vuex-router-sync'
 
 import store from './store'
 
@@ -12,15 +12,13 @@ import App from './App'
 import Game from './components/Game'
 import Ranking from './components/Ranking'
 
-Vue.use(VueRouter)
-
 const routes = [
   {
     path: '/',
     component: App,
     children: [
       {
-        path: '',
+        path: '/',
         component: Game
       },
       {
@@ -31,16 +29,19 @@ const routes = [
   }
 ]
 
-const router = new VueRouter({
+const router = VueRouter.createRouter({
+  history: VueRouter.createWebHistory(),
   routes // short for routes: routes
 })
 
-sync(store, router)
+// sync(store, router)
+
+// configureCompat({ })
 
 const app = createApp(App)
 app.use(store)
 app.use(router)
-app.mount('#app')
+app.mount('#v-guessing-game')
 
 // hide loading
-document.querySelector('.loading-container').style.display = 'none'
+// document.querySelector('.loading-container').style.display = 'none'

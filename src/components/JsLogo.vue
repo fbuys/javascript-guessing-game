@@ -47,11 +47,14 @@ export default {
     }
   },
   watch: {
-    logoUrl: function (val) {
-      this.show = false
-      setTimeout(() => {
-        this.show = true
-      }, 1)
+    logoUrl: {
+      handler: function (val) {
+        this.show = false
+        setTimeout(() => {
+          this.show = true
+        }, 1)
+      },
+      deep: true
     }
   }
 }

@@ -1,18 +1,17 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import { createStore } from 'vuex'
 // import * as actions from './actions'
-import * as getters from './getters'
+// import * as getters from './getters'
 import app from './modules/app'
 import user from './modules/user'
 import sound from './modules/sound'
 
-Vue.use(Vuex)
+// Vue.use(Vuex)
 
 // const debug = process.env.NODE_ENV !== 'production'
 
-export default new Vuex.Store({
+const store = createStore({
   // actions,
-  getters,
+  // getters,
   modules: {
     app,
     user,
@@ -20,3 +19,5 @@ export default new Vuex.Store({
   },
   strict: false
 })
+
+export default store

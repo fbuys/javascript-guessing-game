@@ -35,10 +35,13 @@ export default {
     }
   },
   watch: {
-    dropdownOpen: function (value) {
-      if (!value) {
-        document.removeEventListener('click', this.dropdownAction)
-      }
+    dropdownOpen: {
+      handler: function (value) {
+        if (!value) {
+          document.removeEventListener('click', this.dropdownAction)
+        }
+      },
+      deep: true
     }
   },
   computed: mapGetters([
